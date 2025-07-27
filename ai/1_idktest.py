@@ -1,4 +1,4 @@
-from 2_main import chatbot_assistance
+from main import chatbot_assistance
 import streamlit as st
 
 st.title("AI")
