@@ -138,12 +138,10 @@ class chatbot_assistance:
             #f.write("}\n")
 
     def load_settings(self, settings_path):
-        spec = importlib.util.spec_from_file_location("settings", settings_path)
-        settings = importlib.util.module_from_spec(spec)
-        sys.modules["settings"] = settings
-        spec.loader.exec_module(settings)  
+        with open(settings_path, "r") as f:
+        settings = json.load(f)
 
-        self.intents_path = settings.intents_path
+        self.intents_path = settings["intents_path"]
     
     def load(self, model_path, dimensions_path):
         with open(dimensions_path, 'r') as f:
