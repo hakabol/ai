@@ -164,8 +164,6 @@ class chatbot_assistance:
 
         self.model = chatbot_module(dimensions["input_size"], dimensions["output_size"])
         self.model.load_state_dict(torch.load(model_path))
-        self.pass_intents()
-        self.prepare_data()
     
     def process_message(self, input_message):
         words = self.token_lemon(input_message)
