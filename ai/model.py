@@ -129,13 +129,13 @@ class chatbot_assistance:
         with open(settings_path, 'w') as f:
             f.write(f"intents_path = '{self.intents_path}'\n\n")
 
-            for func in self.function_mapping.values():
-                f.write(f"{inspect.getsource(func)}\n\n")
-            f.write("function_mapping = {")
+            #for func in self.function_mapping.values():
+            #    f.write(f"{inspect.getsource(func)}\n\n")
+            #f.write("function_mapping = {")
 
-            for intent, func in self.function_mapping.items():
-                f.write(f"\"{intent}\" : {func.__name__}")
-            f.write("}\n")
+            #for intent, func in self.function_mapping.items():
+            #    f.write(f"\"{intent}\" : {func.__name__}")
+            #f.write("}\n")
 
     def load_settings(self, settings_path):
         spec = importlib.util.spec_from_file_location("settings", settings_path)
@@ -144,7 +144,6 @@ class chatbot_assistance:
         spec.loader.exec_module(settings)  
 
         self.intents_path = settings.intents_path
-        self.function_mapping = settings.function_mapping
     
     def load(self, model_path, dimensions_path):
         with open(dimensions_path, 'r') as f:
