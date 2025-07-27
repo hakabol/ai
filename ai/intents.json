@@ -1,0 +1,163 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Hey",
+        "Good day",
+        "How's it going?",
+        "What's up?",
+        "Is anyone there?",
+        "Greetings"
+      ],
+      "responses": [
+        "Hey there! How can I assist you today?",
+        "Hello! What can I help you with?",
+        "Hi! Need anything?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "Goodbye",
+        "See you later",
+        "Talk to you soon",
+        "Cya",
+        "Catch you later",
+        "I have to go now",
+        "Have a good day"
+      ],
+      "responses": [
+        "Goodbye! Come back anytime.",
+        "See you soon!",
+        "Take care!"
+      ]
+    },
+    {
+      "tag": "programming",
+      "patterns": [
+        "What is programming?",
+        "Tell me about programming",
+        "What is coding?",
+        "Explain software development",
+        "How does coding work?",
+        "What do programmers do?"
+      ],
+      "responses": [
+        "Programming is the process of writing instructions for computers to perform specific tasks.",
+        "Coding is how we communicate with computers using programming languages like Python or C++.",
+        "Software development involves designing, coding, testing, and maintaining applications or systems."
+      ]
+    },
+    {
+      "tag": "resource",
+      "patterns": [
+        "Where can I learn to code?",
+        "Best way to learn programming?",
+        "How do I start coding?",
+        "Good websites to learn programming",
+        "Can you recommend coding resources?",
+        "How can I become a programmer?"
+      ],
+      "responses": [
+        "You can try freeCodeCamp, Codecademy, or YouTube tutorials to start learning.",
+        "Check out W3Schools, GeeksforGeeks, or Coursera for great programming courses.",
+        "Start with Python or JavaScript — they are beginner-friendly!"
+      ]
+    },
+    {
+      "tag": "stocks",
+      "patterns": [
+        "Show me my stocks",
+        "What stocks do I have?",
+        "Which stocks do I own?",
+        "Show my stock portfolio",
+        "Can I see my investments?"
+      ],
+      "responses": [
+        "Sure! Here's your current stock portfolio.",
+        "These are the stocks you're holding right now.",
+        "Accessing your stock data... here it is!"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "I appreciate it",
+        "Much appreciated",
+        "Thx",
+        "Thanks a lot"
+      ],
+      "responses": [
+        "You're welcome!",
+        "Glad I could help!",
+        "Anytime!"
+      ]
+    },
+    {
+      "tag": "identity",
+      "patterns": [
+        "Who are you?",
+        "What is your name?",
+        "Are you a bot?",
+        "Are you real?",
+        "Tell me about yourself"
+      ],
+      "responses": [
+        "I'm your friendly chatbot, here to assist you!",
+        "You can think of me as your virtual helper.",
+        "I’m an AI created to make your life easier!"
+      ]
+    },
+    {
+      "tag": "help",
+      "patterns": [
+        "Help",
+        "Can you help me?",
+        "I need assistance",
+        "Can I ask you something?",
+        "What can you do?",
+        "Assist me"
+      ],
+      "responses": [
+        "I'm here to help! Just ask me a question.",
+        "Sure! What do you need help with?",
+        "I can answer questions about programming, resources, stocks, and more!"
+      ]
+    },
+    {
+      "tag": "joke",
+      "patterns": [
+        "Tell me a joke",
+        "Make me laugh",
+        "Do you know any jokes?",
+        "Say something funny"
+      ],
+      "responses": [
+        "Why did the computer show up late to work? It had a hard drive!",
+        "I would tell you a UDP joke... but you might not get it.",
+        "Debugging: Removing the needles from the haystack."
+      ]
+    },
+    {
+      "tag": "weather",
+      "patterns": [
+        "What's the weather?",
+        "Is it raining?",
+        "Do I need an umbrella?",
+        "What's the temperature?",
+        "Weather forecast please"
+      ],
+      "responses": [
+        "I can't give real-time weather yet, but you can check on a weather app!",
+        "I'm not connected to weather data, but it’s always smart to carry an umbrella just in case!",
+        "Try asking your favorite weather assistant for the latest update!"
+      ]
+    }
+  ]
+}
