@@ -1,20 +1,14 @@
 from model import chatbot_assistance
 import streamlit as st
-import os
 
 st.title("AI")
 
 assistant = chatbot_assistance()
-current_dir = os.path.dirname(__file__)
-current_dir = os.path.dirname(os.path.abspath(__file__))
-settings_path = os.path.join(current_dir, "settings.py")
-
-assistant.load_settings(settings_path)
-
+assistant.load_settings("settings.py")
+print(assistant.intents_path)
+assistant.pass_intents()
 assistant.prepare_data()
-model_path = os.path.join(current_dir, "chatbot_model.pth")
-dimensions_path = os.path.join(current_dir, "dimensions.json")
-assistant.load(model_path, dimensions_path)
+assistant.load("chatbot_model.pth", "dimensions.json")
 
 if 'message' not in st.session_state:
     st.session_state.message = []
