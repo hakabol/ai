@@ -8,7 +8,7 @@ with open("settings.py", "r") as f:
     code = f.read()
     st.code(code)
 assistant = chatbot_assistance()
-assistant.load_settings("settings.py")
+assistant.load_settings("settings.json")
 print(assistant.intents_path)
 assistant.pass_intents()
 assistant.prepare_data()
