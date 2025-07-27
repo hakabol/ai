@@ -139,7 +139,7 @@ class chatbot_assistance:
 
     def load_settings(self, settings_path):
         with open(settings_path, "r") as f:
-        settings = json.load(f)
+            settings = json.load(f)
 
         self.intents_path = settings["intents_path"]
     
