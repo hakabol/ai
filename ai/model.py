@@ -136,7 +136,7 @@ class chatbot_assistance:
 
     def load_settings(self, settings_path):
         base_path = os.path.dirname(os.path.abspath(__file__))
-        full_path = os.path.join(base_path, filename)
+        full_path = os.path.join(base_path, settings_path)
 
         if not os.path.exists(full_path):
             raise FileNotFoundError(f"Settings file not found at: {full_path}")
