@@ -4,7 +4,7 @@ import os
 
 st.title("AI")
 
-with open("settings.py", "r") as f:
+with open("settings.json", "r") as f:
     code = f.read()
     st.code(code)
 assistant = chatbot_assistance()
