@@ -4,6 +4,9 @@ import os
 
 st.title("AI")
 
+st.write("CWD:", os.getcwd())
+st.write("Files in folder:", os.listdir())
+
 with open("settings.json", "r") as f:
     code = f.read()
     st.code(code)
