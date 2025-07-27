@@ -13,7 +13,8 @@ assistant.load_settings(settings_path)
 
 assistant.pass_intents()
 assistant.prepare_data()
-assistant.load("chatbot_model.pth", "dimensions.json")
+model_path = os.path.join(current_dir, "chatbot_model.pth")
+dimensions_path = os.path.join(current_dir, "dimensions.json")
 
 if 'message' not in st.session_state:
     st.session_state.message = []
