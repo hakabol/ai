@@ -1,32 +1,31 @@
-from model import chatbot_assistance
 import streamlit as st
 import os
+from model import chatbot_assistance
 
-st.title("AI")
+st.title("💬 Simple AI Chatbot")
 
-assistant = chatbot_assistance()
-current_dir = os.path.dirname(__file__)
-current_dir = os.path.dirname(os.path.abspath(__file__))
-settings_path = os.path.join(current_dir, "settings.py")
+@st.cache_resource
+def load_bot():
+    assistant = chatbot_assistance()
+    base = os.path.dirname(__file__)
+    assistant.load_settings(os.path.join(base, "settings.py"))
+    assistant.pass_intents()
+    assistant.load(os.path.join(base, "chatbot_model.pth"), os.path.join(base, "dimensions.json"))
+    return assistant
 
-assistant.load_settings(settings_path)
-assistant.pass_intents()
+bot = load_bot()
 
-model_path = os.path.join(current_dir, "chatbot_model.pth")
-dimensions_path = os.path.join(current_dir, "dimensions.json")
-assistant.load(model_path, dimensions_path)
+if "chat" not in st.session_state:
+    st.session_state.chat = []
 
-if 'message' not in st.session_state:
-    st.session_state.message = []
+user_input = st.chat_input("Say something...")
 
-message = st.chat_input()
+for msg in st.session_state.chat:
+    st.chat_message(msg["role"]).markdown(msg["content"])
 
-for mess in st.session_state.message:
-    st.chat_message(mess["role"]).markdown(mess["content"])
-
-if message:
-    st.chat_message("user").markdown(message)
-    st.session_state.message.append({"role":"user", "content":message})
-    output = assistant.process_message(message)
-    st.chat_message("ai").markdown(output)
-    st.session_state.message.append({"role":"ai", "content":output})
+if user_input:
+    st.chat_message("user").markdown(user_input)
+    st.session_state.chat.append({"role": "user", "content": user_input})
+    reply = bot.process_message(user_input)
+    st.chat_message("ai").markdown(reply)
+    st.session_state.chat.append({"role": "ai", "content": reply})
