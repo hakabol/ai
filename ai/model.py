@@ -156,7 +156,9 @@ class chatbot_assistance:
         spec.loader.exec_module(settings)
         self.settings = settings
         self.intents_path = settings.intents_path
-
+        self.function_mapping = settings.function_mapping
+        
+        self.pass_intents()
     
     def load(self, model_path, dimensions_path):
         with open(dimensions_path, 'r') as f:
