@@ -1,8 +1,10 @@
 from model import chatbot_assistance
 import streamlit as st
+import os
 
 st.title("AI")
 
+st.write("Settings file exists:", os.path.exists("settings.py"))
 assistant = chatbot_assistance()
 assistant.load_settings("settings.py")
 print(assistant.intents_path)
