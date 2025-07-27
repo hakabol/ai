@@ -145,6 +145,7 @@ class chatbot_assistance:
         settings = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(settings)
         self.settings = settings
+        self.intents_path = settings.intents_path
 
     
     def load(self, model_path, dimensions_path):
