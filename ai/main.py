@@ -4,7 +4,9 @@ import os
 
 st.title("AI")
 
-st.write("Settings file exists:", os.path.exists("settings.py"))
+with open("settings.py", "r") as f:
+    code = f.read()
+    st.code(code)
 assistant = chatbot_assistance()
 assistant.load_settings("settings.py")
 print(assistant.intents_path)
