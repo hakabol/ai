@@ -157,8 +157,6 @@ class chatbot_assistance:
         self.settings = settings
         self.intents_path = settings.intents_path
         self.function_mapping = settings.function_mapping
-        
-        self.pass_intents()
     
     def load(self, model_path, dimensions_path):
         with open(dimensions_path, 'r') as f:
@@ -166,6 +164,8 @@ class chatbot_assistance:
 
         self.model = chatbot_module(dimensions["input_size"], dimensions["output_size"])
         self.model.load_state_dict(torch.load(model_path))
+        self.pass_intents()
+        self.prepare_data()
     
     def process_message(self, input_message):
         words = self.token_lemon(input_message)
