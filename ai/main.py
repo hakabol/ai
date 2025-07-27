@@ -6,10 +6,11 @@ st.title("AI")
 
 assistant = chatbot_assistance()
 current_dir = os.path.dirname(__file__)
+current_dir = os.path.dirname(os.path.abspath(__file__))
 settings_path = os.path.join(current_dir, "settings.py")
+
 assistant.load_settings(settings_path)
-assistant.load_settings("settings.py")
-print(assistant.intents_path)
+
 assistant.pass_intents()
 assistant.prepare_data()
 assistant.load("chatbot_model.pth", "dimensions.json")
