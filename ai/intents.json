@@ -159,5 +159,10 @@
         "Try asking your favorite weather assistant for the latest update!"
       ]
     }
+    {
+      "tag":"creator",
+      "pattern":["who is habel",
+        "who made you",
+        "who is the smartest man alive"]
   ]
 }
