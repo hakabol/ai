@@ -161,7 +161,7 @@
     },
     {
       "tag":"creator",
-      "pattern":["who is habel",
+      "patterns":["who is habel",
         "who made you",
         "who is the smartest man alive",
         "who is the best guy in the universe", 
