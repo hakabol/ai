@@ -15,9 +15,9 @@ assistant.pass_intents()
 assistant.prepare_data()
 model_path = os.path.join(current_dir, "chatbot_model.pth")
 dimensions_path = os.path.join(current_dir, "dimensions.json")
-st.write("Current dir:", current_dir)
-st.write("intents path:", assistant.intents_path)
-st.write("File exists:", os.path.exists(assistant.intents_path))
+#st.write("Current dir:", current_dir)
+#st.write("intents path:", assistant.intents_path)
+#st.write("File exists:", os.path.exists(assistant.intents_path))
 assistant.load(model_path, dimensions_path)
 
 if 'message' not in st.session_state:
@@ -31,6 +31,6 @@ for mess in st.session_state.message:
 if message:
     st.chat_message("user").markdown(message)
     st.session_state.message.append({"role":"user", "content":message})
-    st.write(f"model input: {assistant.bag_of_words(assistant.token_lemon(message))}, input input: {(assistant.vocaluberries)}")
+    #st.write(f"model input: {assistant.bag_of_words(assistant.token_lemon(message))}, input input: {(assistant.vocaluberries)}")
     output = assistant.process_message(message)
     st.chat_message("ai").markdown(output)
