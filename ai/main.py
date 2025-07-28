@@ -1,6 +1,7 @@
 from model import chatbot_assistance
 import streamlit as st
 import os
+import time
 
 st.title("AI")
 
@@ -32,6 +33,7 @@ for mess in st.session_state.message:
 if message:
     st.chat_message("user").markdown(message)
     st.session_state.message.append({"role":"user", "content":message})
+    time.sleep(0.3)
     #st.write(f"model input: {len(assistant.bag_of_words(assistant.token_lemon(message)))}, input input: {len((assistant.vocaluberries))}")
     output = assistant.process_message(message)
     st.chat_message("ai").markdown(output)
