@@ -145,18 +145,8 @@ class chatbot_assistance:
             f.write("}\n")
 
     def load_settings(self, settings_path):
-        base_path = os.path.dirname(os.path.abspath(__file__))
-        full_path = os.path.join(base_path, settings_path)
-
-        if not os.path.exists(full_path):
-            raise FileNotFoundError(f"Settings file not found at: {full_path}")
-
-        spec = importlib.util.spec_from_file_location("settings", full_path)
-        settings = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(settings)
-        self.settings = settings
-        self.intents_path = settings.intents_path
-        self.function_mapping = settings.function_mapping
+        with open("settings.json", "r") as f:
+            self.intents = json.load(f)["intents_path"]
     
     def load(self, model_path, dimensions_path):
         with open(dimensions_path, 'r') as f:
