@@ -145,8 +145,7 @@ class chatbot_assistance:
             f.write("}\n")
 
     def load_settings(self, settings_path):
-        with open("settings.json", "r") as f:
-            self.intents = json.load(f)["intents_path"]
+        self.intents_path = "intents.json"
     
     def load(self, model_path, dimensions_path):
         with open(dimensions_path, 'r') as f:
