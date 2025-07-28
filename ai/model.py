@@ -167,7 +167,7 @@ class chatbot_assistance:
                 self.vocaluberries.extend(pattern_word)
                 self.vocaluberries = sorted(set(self.vocaluberries))
 
-        self.model = chatbot_module(len(self.vocaluberries), dimensions["output_size"])
+        self.model = chatbot_module(dimensions["input_size"], dimensions["output_size"])
         self.model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
         self.model.eval()
     
