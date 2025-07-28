@@ -114,7 +114,7 @@ class chatbot_assistance:
         data_set = TensorDataset(X_tensor, Y_tensor)
         loader = DataLoader(data_set, batch_size=batch_size, shuffle=True)
 
-        self.model = chatbot_module(self., len(self.intents))
+        self.model = chatbot_module(len(self.vocaluberries), len(self.intents))
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.Adam(self.model.parameters(), lr=lr)
 
@@ -167,7 +167,7 @@ class chatbot_assistance:
                 self.vocaluberries.extend(pattern_word)
                 self.vocaluberries = sorted(set(self.vocaluberries))
 
-        self.model = chatbot_module(107, dimensions["output_size"])
+        self.model = chatbot_module(len(self.vocaluberries), dimensions["output_size"])
         self.model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
         self.model.eval()
     
