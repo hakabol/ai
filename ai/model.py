@@ -48,7 +48,8 @@ class chatbot_assistance:
 
     def __init__(self):
         self.model = None
-        self.intents_path = "intents.json"
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        self.intents_path = os.path.join(current_dir, "intents.json")
 
         self.documents = []
         self.vocaluberries = []
