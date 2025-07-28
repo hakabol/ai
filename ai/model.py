@@ -28,6 +28,7 @@ class chatbot_module(nn.Module):
 
     def __init__(self, inputsize, outputsize):
         super(chatbot_module, self).__init__()
+        self.input_size = inputsize
 
         self.fc1 = nn.Linear(inputsize, 128)
         self.fc2 = nn.Linear(128, 64)
@@ -47,7 +48,7 @@ class chatbot_assistance:
 
     def __init__(self):
         self.model = None
-        self.intents_path = None
+        self.intents_path = "intents.json"
 
         self.documents = []
         self.vocaluberries = []
@@ -145,7 +146,7 @@ class chatbot_assistance:
             f.write("}\n")
 
     def load_settings(self, settings_path):
-        self.intents_path = "intents.json"
+        pass
     
     def load(self, model_path, dimensions_path):
         with open(dimensions_path, 'r') as f:
@@ -153,6 +154,20 @@ class chatbot_assistance:
 
         self.model = chatbot_module(dimensions["input_size"], dimensions["output_size"])
         self.model.load_state_dict(torch.load(model_path))
+
+        self.vocaluberries = []
+        self.intents = []
+
+        with open(self.intents_path, "r", encoding='utf-8') as f:
+            file = json.load(f)
+        for intents in file["intents"]:
+            if intents['tag'] not in self.intents:
+                    self.intents.append(intents['tag'])
+                    self.intents_responses[intents['tag']] = intents["responses"]
+            for intent in intents["patterns"]:
+                pattern_word = self.token_lemon(intent)
+                self.vocaluberries.extend(pattern_word)
+                self.vocaluberries = sorted(set(self.vocaluberries))
     
     def process_message(self, input_message):
         words = self.token_lemon(input_message)
@@ -162,10 +177,10 @@ class chatbot_assistance:
 
         self.model.eval()
         with torch.no_grad():
+            
             predictions = self.model(bag_tensor)
             probabilities = torch.softmax(predictions, dim=1)
             confidence, predicted_class_index = torch.max(probabilities, dim=1)
-            
 
         if confidence.item() < 0.00:
             return "Sorry, I didn't understand that."
