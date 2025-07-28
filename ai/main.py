@@ -34,6 +34,6 @@ if message:
     st.chat_message("user").markdown(message)
     st.session_state.message.append({"role":"user", "content":message})
     #st.write(f"model input: {len(assistant.bag_of_words(assistant.token_lemon(message)))}, input input: {len((assistant.vocaluberries))}")
-    output = assistant.process_message(message)
+    output = st.session_state.assistant.process_message(message)
     st.chat_message("ai").markdown(output)
     st.session_state.message.append({"role":"ai", "content":output})
