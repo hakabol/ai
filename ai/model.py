@@ -158,7 +158,7 @@ class chatbot_assistance:
         self.vocaluberries = []
         self.intents = []
 
-        with open(self.intents_path, "r", encoding='utf-8') as f:
+        with open("intents.json", "r", encoding='utf-8') as f:
             file = json.load(f)
         for intents in file["intents"]:
             if intents['tag'] not in self.intents:
