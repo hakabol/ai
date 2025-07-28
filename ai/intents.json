@@ -163,6 +163,11 @@
       "tag":"creator",
       "pattern":["who is habel",
         "who made you",
-        "who is the smartest man alive"]
+        "who is the smartest man alive",
+        "who is the best guy in the universe", 
+        "who is the best guy in the world", 
+        "who is the best guy in the entire earth"],
+      "responses":["habel is my creator and he is the best man and smartest man on earth"]
+    }
   ]
 }
