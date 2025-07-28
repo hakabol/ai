@@ -155,6 +155,7 @@ class chatbot_assistance:
 
         self.model = chatbot_module(dimensions["input_size"], dimensions["output_size"])
         self.model.load_state_dict(torch.load(model_path))
+        self.model.eval()
 
         self.vocaluberries = []
         self.intents = []
