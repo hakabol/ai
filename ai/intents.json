@@ -158,7 +158,7 @@
         "I'm not connected to weather data, but it’s always smart to carry an umbrella just in case!",
         "Try asking your favorite weather assistant for the latest update!"
       ]
-    }
+    },
     {
       "tag":"creator",
       "pattern":["who is habel",
