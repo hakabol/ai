@@ -153,7 +153,7 @@ class chatbot_assistance:
         with open(dimensions_path, 'r') as f:
             dimensions = json.load(f)
 
-        self.model = chatbot_module(dimensions["input_size"], dimensions["output_size"])
+        self.model = chatbot_module(107, dimensions["output_size"])
         self.model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
         self.model.eval()
 
