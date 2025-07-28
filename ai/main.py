@@ -17,10 +17,10 @@ if "assistant" not in st.session_state:
     st.session_state.assistant.prepare_data()
     model_path = os.path.join(current_dir, "chatbot_model.pth")
     dimensions_path = os.path.join(current_dir, "dimensions.json")
-#st.write("Current dir:", current_dir)
-#st.write("intents path:", "chatbot_model.pth")
-#st.write("File exists:", model_path)
-st.session_state.assistant.load(model_path, dimensions_path)
+    #st.write("Current dir:", current_dir)
+    #st.write("intents path:", "chatbot_model.pth")
+    #st.write("File exists:", model_path)
+    st.session_state.assistant.load(model_path, dimensions_path)
 
 if 'message' not in st.session_state:
     st.session_state.message = []
