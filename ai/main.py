@@ -4,21 +4,22 @@ import os
 
 st.title("AI")
 
-assistant = chatbot_assistance()
-current_dir = os.path.dirname(__file__)
-current_dir = os.path.dirname(os.path.abspath(__file__))
-settings_path = os.path.join(current_dir, "settings.py")
+if "assistant" not in st.session_state:
+    current_dir = os.path.dirname(__file__)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    settings_path = os.path.join(current_dir, "settings.py")
 
-assistant.load_settings(settings_path)
+    st.session_state.assistant = chatbot_assistance()
+    st.session_state.assistant.load_settings(settings_path)
 
-assistant.pass_intents()
-assistant.prepare_data()
-model_path = os.path.join(current_dir, "chatbot_model.pth")
-dimensions_path = os.path.join(current_dir, "dimensions.json")
+    st.session_state.assistant.pass_intents()
+    st.session_state.assistant.prepare_data()
+    model_path = os.path.join(current_dir, "chatbot_model.pth")
+    dimensions_path = os.path.join(current_dir, "dimensions.json")
 #st.write("Current dir:", current_dir)
 #st.write("intents path:", "chatbot_model.pth")
 #st.write("File exists:", model_path)
-assistant.load(model_path, dimensions_path)
+st.session_state.assistant.load(model_path, dimensions_path)
 
 if 'message' not in st.session_state:
     st.session_state.message = []
