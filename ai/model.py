@@ -14,8 +14,15 @@ import torch.nn.functional as f
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
-nltk.download("punkt")
-nltk.download("wordnet")
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt")
+
+try:
+    nltk.data.find("corpora/wordnet")
+except LookupError:
+    nltk.download("wordnet")
 
 class chatbot_module(nn.Module):
 
@@ -129,26 +136,34 @@ class chatbot_assistance:
         with open(settings_path, 'w') as f:
             f.write(f"intents_path = '{self.intents_path}'\n\n")
 
-            #for func in self.function_mapping.values():
-            #    f.write(f"{inspect.getsource(func)}\n\n")
-            #f.write("function_mapping = {")
+            for func in self.function_mapping.values():
+                f.write(f"{inspect.getsource(func)}\n\n")
+            f.write("function_mapping = {")
 
-            #for intent, func in self.function_mapping.items():
-            #    f.write(f"\"{intent}\" : {func.__name__}")
-            #f.write("}\n")
+            for intent, func in self.function_mapping.items():
+                f.write(f"\"{intent}\" : {func.__name__}")
+            f.write("}\n")
 
     def load_settings(self, settings_path):
-        with open(settings_path, "r") as f:
-            settings = json.load(f)
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        full_path = os.path.join(base_path, settings_path)
 
-        self.intents_path = settings["intents_path"]
+        if not os.path.exists(full_path):
+            raise FileNotFoundError(f"Settings file not found at: {full_path}")
+
+        spec = importlib.util.spec_from_file_location("settings", full_path)
+        settings = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(settings)
+        self.settings = settings
+        self.intents_path = settings.intents_path
+        self.function_mapping = settings.function_mapping
     
     def load(self, model_path, dimensions_path):
         with open(dimensions_path, 'r') as f:
             dimensions = json.load(f)
 
         self.model = chatbot_module(dimensions["input_size"], dimensions["output_size"])
-        self.model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
+        self.model.load_state_dict(torch.load(model_path))
     
     def process_message(self, input_message):
         words = self.token_lemon(input_message)
