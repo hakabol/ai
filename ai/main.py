@@ -27,5 +27,6 @@ for mess in st.session_state.message:
 if message:
     st.chat_message("user").markdown(message)
     st.session_state.message.append({"role":"user", "content":message})
+    st.write(f"model input: {assistant.bag_of_words(assistant.token_lemon(message))}, input input: {(assistant.vocaluberries)}")
     output = assistant.process_message(message)
     st.chat_message("ai").markdown(output)
