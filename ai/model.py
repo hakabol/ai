@@ -106,45 +106,6 @@ class chatbot_assistance:
         
         self.X = np.array(bags)
         self.Y = np.array(indecies)
-    
-    def train(self, batch_size, lr, epochs):
-        X_tensor = torch.tensor(self.X, dtype=torch.float32)
-        Y_tensor = torch.tensor(self.Y, dtype =torch.long)
-
-        data_set = TensorDataset(X_tensor, Y_tensor)
-        loader = DataLoader(data_set, batch_size=batch_size, shuffle=True)
-
-        self.model = chatbot_module(len(self.vocaluberries), len(self.intents))
-        criterion = nn.CrossEntropyLoss()
-        optimizer = optim.Adam(self.model.parameters(), lr=lr)
-
-        for epoch in range(epochs):
-            running_loss = 0.0
-
-            for batch_X, batch_Y in loader:
-                optimizer.zero_grad()
-                outputs = self.model(batch_X)
-                loss = criterion(outputs, batch_Y)
-                loss.backward()
-                optimizer.step()
-                running_loss += loss
-            print(f"epoch: {epoch + 1} loss: {running_loss/len(loader):.10f}")
-    def save(self, model_path, dimensions_path, settings_path):
-        torch.save(self.model.state_dict(), model_path)
-
-        with open(dimensions_path, 'w') as f:
-            json.dump({"input_size" : self.X.shape[1], "output_size" : len(self.intents)}, f)
-        
-        with open(settings_path, 'w') as f:
-            f.write(f"intents_path = '{self.intents_path}'\n\n")
-
-            for func in self.function_mapping.values():
-                f.write(f"{inspect.getsource(func)}\n\n")
-            f.write("function_mapping = {")
-
-            for intent, func in self.function_mapping.items():
-                f.write(f"\"{intent}\" : {func.__name__}")
-            f.write("}\n")
 
     def load_settings(self, settings_path):
         pass
@@ -203,27 +164,3 @@ class chatbot_assistance:
         
         else:
             return None
-        
-def stocks():
-    print("NO STOCKS FOR U")
-
-if __name__ == '__main__':
-    assistant = chatbot_assistance()
-    assistant.intents_path = "intents.json"
-    assistant.function_mapping={"stocks" : stocks}
-    assistant.pass_intents()
-    assistant.prepare_data()
-    assistant.train(8, 0.001, 1000)
-    assistant.save("chatbot_model.pth", "dimensions.json", "settings.py")
-    print(f"vocab: {assistant.vocaluberries}\nDocs:{assistant.documents}")
-
-    #assistant = chatbot_assistance("intents.json")
-    #assistant.pass_intents()
-    #assistant.prepare_data()
-    #assistant.load("chatbot_model.pth", "dimensions.json")
-
-    message = input("enter message: ")
-
-    while message != "quit":
-        print(assistant.process_message(message))
-        message = input("enter next message: ")
