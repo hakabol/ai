@@ -114,7 +114,7 @@ class chatbot_assistance:
         data_set = TensorDataset(X_tensor, Y_tensor)
         loader = DataLoader(data_set, batch_size=batch_size, shuffle=True)
 
-        self.model = chatbot_module(self.X.shape[1], len(self.intents))
+        self.model = chatbot_module(107, len(self.intents))
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.Adam(self.model.parameters(), lr=lr)
 
