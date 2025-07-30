@@ -8,7 +8,7 @@ st.title("AI")
 if "assistant" not in st.session_state:
     current_dir = os.path.dirname(__file__)
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    settings_path = os.path.join(current_dir, "settings.py")
+    settings_path = os.path.join(current_dir, "settings.json")
 
     st.session_state.assistant = chatbot_assistance()
     st.session_state.assistant.load_settings(settings_path)
