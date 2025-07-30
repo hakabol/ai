@@ -108,8 +108,9 @@ class chatbot_assistance:
         self.Y = np.array(indecies)
 
     def load_settings(self, settings_path):
-        with open(settings_path, "r") as f:
-            self.intents_path = json.load(f)["intents_path"]
+        #with open(settings_path, "r") as f:
+            #self.intents_path = json.load(f)["intents_path"]
+        pass
     
     def load(self, model_path, dimensions_path):
         with open(dimensions_path, 'r') as f:
